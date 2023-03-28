@@ -3,7 +3,7 @@ import numpy as np
 import plotly.express as px
 import xlrd
 import openpyxl
-book = openpyxl.load_workbook('chis_riv.xlsx')
+book = openpyxl.load_workbook('.data/chis_riv.xlsx')
 sheet = book.get_sheet_by_name('Sheet1')
 data = [int(sheet.cell(row=r, column=c).value) for c in range(1, sheet.max_column+1) for r in range(1, sheet.max_row+1)]
 keys = [i for i in range(len(data))]
@@ -22,6 +22,3 @@ fig = px.density_mapbox(p, lat='latitude', lon='longitude', z='count',
 fig.show()
 results_path = 'results.png'
 #print(results_path)
-
-
-fig.savefig(results_path)
